@@ -36,6 +36,7 @@ abstract class BooleanExpression(val l: Expression, val r: Expression) : Express
     return compare(ll, rr)
   }
 
+  // compare 2 column vectors. Return an ColumnVector storing evaluated result of each pair (1 from left, 1 from right)
   fun compare(l: ColumnVector, r: ColumnVector): ColumnVector {
     val v = BitVector("v", RootAllocator(Long.MAX_VALUE))
     v.allocateNew()
@@ -47,6 +48,7 @@ abstract class BooleanExpression(val l: Expression, val r: Expression) : Express
     return ArrowFieldVector(v)
   }
 
+  // evaluate a single value of the left and a single value of the right column vector
   abstract fun evaluate(l: Any?, r: Any?, arrowType: ArrowType): Boolean
 }
 
